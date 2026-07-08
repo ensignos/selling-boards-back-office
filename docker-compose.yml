@@ -4,6 +4,9 @@ services:
       context: .
       dockerfile: Dockerfile
       target: dev
+      args:
+        UID: 1000
+        GID: 1000
     volumes:
       - .:/var/www/html
     environment:
