@@ -24,4 +24,24 @@ class AuthenticationTest extends TestCase
         $response->assertOk();
         $response->assertJsonStructure(['token']);
     }
+
+    public function test_unauthenticated_request_to_protected_route_is_rejected(): void
+    {
+        $response = $this->getJson('/api/user');
+
+        $response->assertUnauthorized();
+    }
+
+    public function test_authenticated_request_to_protected_route_succeeds(): void
+    {
+        $user = User::factory()->create();
+        $token = $user->createToken('api-token')->plainTextToken;
+
+        $response = $this->getJson('/api/user', [
+            'Authorization' => 'Bearer ' . $token,
+        ]);
+
+        $response->assertOk();
+        $response->assertJson(['email' => $user->email]);
+    }
 }
