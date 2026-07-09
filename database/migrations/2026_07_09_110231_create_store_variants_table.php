@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignIdFor(Merchant::class)->constrained();
             $table->foreignIdFor(Variant::class)->constrained();
             $table->foreignIdFor(Store::class)->constrained();
+            $table->unique(['variant_id', 'store_id']);
             $table->string('pricing_type', 50);
             $table->decimal('price', 20, 6);
             $table->boolean('available_for_sale');

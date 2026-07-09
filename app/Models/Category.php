@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Attributes\Fillable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-#[Fillable(['name', 'color'])]
+#[Fillable(['name', 'colour'])]
 class Category extends Model
 {
     use SoftDeletes;

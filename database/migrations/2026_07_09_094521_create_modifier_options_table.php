@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignIdFor(Merchant::class)->constrained();
             $table->foreignIdFor(Modifier::class)->constrained();
             $table->string('name', 50);
-            $table->float('price');
+            $table->decimal('price', 20, 6);
             $table->tinyInteger('position');
             $table->timestamps();
             $table->softDeletes();

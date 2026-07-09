@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignIdFor(Merchant::class)->constrained();
             $table->string('name', 50);
-            $table->string('position', 50);
+            $table->tinyInteger('position');
             $table->timestamps();
             $table->softDeletes();
         });

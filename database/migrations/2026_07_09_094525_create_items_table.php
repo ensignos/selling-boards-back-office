@@ -24,8 +24,8 @@ return new class extends Migration
             $table->boolean('sold_by_weight');
             $table->boolean('is_composite');
             $table->boolean('use_production');
-            $table->foreignIdFor(Category::class);
-            $table->foreignIdFor(Supplier::class);
+            $table->foreignIdFor(Category::class)->constrained();
+            $table->foreignIdFor(Supplier::class)->constrained();
             $table->string('form', 10);
             $table->string('colour', 10);
             $table->string('image_url');
