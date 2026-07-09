@@ -1,6 +1,7 @@
 <?php
 
-use App\Models\Merchant;
+use App\Models\Store;
+use App\Models\Tax;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,13 +13,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('modifiers', function (Blueprint $table) {
-            $table->id();
-            $table->foreignIdFor(Merchant::class)->constrained();
-            $table->string('name', 50);
-            $table->string('position', 50);
+        Schema::create('store_tax', function (Blueprint $table) {
+            $table->foreignIdFor(Store::class)->constrained();
+            $table->foreignIdFor(Tax::class)->constrained();
+            $table->unique(['store_id', 'tax_id']);
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('modifiers');
+        Schema::dropIfExists('store_tax');
     }
 };

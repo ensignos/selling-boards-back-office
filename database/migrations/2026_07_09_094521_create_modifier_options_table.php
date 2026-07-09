@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Merchant;
+use App\Models\Modifier;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,7 +15,13 @@ return new class extends Migration
     {
         Schema::create('modifier_options', function (Blueprint $table) {
             $table->id();
+            $table->foreignIdFor(Merchant::class)->constrained();
+            $table->foreignIdFor(Modifier::class)->constrained();
+            $table->string('name', 50);
+            $table->float('price');
+            $table->tinyInteger('position');
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

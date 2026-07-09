@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\Merchant;
+use App\Models\Store;
+use App\Models\Variant;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,11 +14,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('modifiers', function (Blueprint $table) {
+        Schema::create('store_variants', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Merchant::class)->constrained();
-            $table->string('name', 50);
-            $table->string('position', 50);
+            $table->foreignIdFor(Variant::class)->constrained();
+            $table->foreignIdFor(Store::class)->constrained();
+            $table->string('pricing_type', 50);
+            $table->decimal('price', 20, 6);
+            $table->boolean('available_for_sale');
+            $table->string('optimal_stock', 50);
+            $table->string('low_stock', 50);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -27,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('modifiers');
+        Schema::dropIfExists('store_variants');
     }
 };
