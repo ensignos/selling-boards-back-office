@@ -28,7 +28,7 @@ class CategoryApiTest extends TestCase
         ]);
 
         $response->assertStatus(200);
-        $response->assertJsonCount(3);
+        $response->assertJsonCount(3, 'data');
 
         foreach ($categories as $category) {
             $response->assertJsonFragment([
