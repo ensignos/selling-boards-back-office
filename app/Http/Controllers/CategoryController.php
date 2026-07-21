@@ -29,7 +29,7 @@ class CategoryController extends Controller
 
     public function show(Merchant $merchant, Category $category)
     {
-        return new CategoryResource($category);
+        return CategoryResource::make($category);
     }
 
     public function update(Request $request, Merchant $merchant, Category $category)
@@ -41,7 +41,7 @@ class CategoryController extends Controller
 
         $category->update($valdiated);
 
-        return new CategoryResource($category);
+        return CategoryResource::make($category);
     }
 
     public function destroy(Merchant $merchant, Category $category)
